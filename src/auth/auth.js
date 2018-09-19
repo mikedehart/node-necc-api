@@ -5,6 +5,7 @@ const checkToken = expressJwt({ secret: config.jwt.secret });
 const Admin = require('../api/admin/adminModel');
 
 
+
 // Decode incoming token. Returns a middleware function
 exports.decodeToken = function() {
 	return function(req, res, next) {

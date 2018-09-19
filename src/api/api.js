@@ -8,7 +8,7 @@ const adminRoutes = require('./admin/adminRoutes');
 	client application (running on localhost)
 */
 
-// Mounting other routers for our routes (right now just for user information)
+// Mounting other routers for our routes
 router.use('/admin', require('./admin/adminRoutes'));
 router.use('/gallery', require('./gallery/galRoutes'));
 router.use('/user', require('./user/userRoutes'));

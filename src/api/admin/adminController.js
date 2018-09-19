@@ -19,7 +19,6 @@ exports.params = function(req, res, next, id) {
 		.then((user) => {
 			if(!user) {
 				res.status(401).send('No user with given id');
-				//next(new Error('No user with given Id!'));
 			} else {
 				req.user = user;
 				next();
@@ -33,6 +32,8 @@ exports.params = function(req, res, next, id) {
 
 exports.get = function(req, res, next) {
   Admin.find({})
+    .select('-password')
+    .exec()
     .then(function(users){
       res.json(users);
     }, function(err){
@@ -56,14 +57,13 @@ exports.post = function(req, res, next) {
 // -------- ID Routes --------
 
 exports.getOne = function(req, res, next) {
-  var user = req.user;
+  let user = req.user;
   res.json(user);
 };
 
 exports.put = function(req, res, next) {
-  var user = req.user;
-
-  var update = req.body;
+  let user = req.user;
+  let update = req.body;
 
   _.merge(user, update);
 
@@ -77,7 +77,8 @@ exports.put = function(req, res, next) {
 };
 
 exports.delete = function(req, res, next) {
-  req.user.remove(function(err, removed) {
+  let user = req.user;
+  user.remove(function(err, removed) {
     if (err) {
       res.status(500).send(err);
     } else {

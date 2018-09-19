@@ -48,7 +48,6 @@ UserSchema.methods = {
 		if(!plainKey) {
 			return '';
 		} else {
-			console.log('encrypting...');
 			const salt = bcrypt.genSaltSync(10);
 			return bcrypt.hashSync(plainKey, salt);
 		}

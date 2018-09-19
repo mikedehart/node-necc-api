@@ -37,5 +37,8 @@
     "method-override": "^3.0.0",
     "mongoose": "^5.2.15",
     "random-key": "^0.3.2"
+  },
+  "devDependencies": {
+    "morgan": "^1.9.1"
   }
 }

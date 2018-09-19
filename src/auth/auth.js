@@ -60,17 +60,16 @@ exports.verifyUser = function() {
 		// If no username / password then stop
 		if(!username || !password) {
 			res.status(401).send('No username / password sent!');
-			//next(new Error('No username / password given'));
+			return;
 		}
 
 		Admin.findOne({ username: username })
 			.then((user) => {
 				if(!user) {
 					res.status(401).send('No user with given username');
-					//next(new Error('No user with given Username!'));
 				} else {
 					if(!user.authenticate(password)) {
-						//next(new Error('Incorrect password'));
+						consol.log('WRONG PASS');
 						res.status(401).send("Incorrect password");
 					} else {
 						// Checks out, assign the user to req.user
@@ -90,7 +89,7 @@ exports.verifyUser = function() {
 exports.signToken = function(id) {
 	return jwt.sign(
 		{ _id: id },
-		config.secrets.jwt,
-		{ expiresIn: config.secrets.expireTime }
+		config.jwt.secret,
+		{ expiresIn: config.jwt.expireTime }
 	);
 };

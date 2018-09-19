@@ -5,13 +5,18 @@ const auth = require('../../auth/auth');
 
 // TODO: Add auth to update/delete/add galleries
 
+// JWT auth for checking token before user can POST new galleries
+const jwtAuth = [auth.decodeToken(), auth.verifyToken()];
+
+
 // Everyone can view galleries
+// Auth needed to create one
 
 router.param('id', controller.params);
 
 router.route('/')
 	.get(controller.get) // get all galleries
-	.post(controller.post) // create a gallery
+	.post(jwtAuth, controller.post) // create a gallery
 
 router.route('/:id')
 	.get(controller.getOne) // get gallery by dirname

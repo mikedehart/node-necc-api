@@ -9,7 +9,6 @@ let AdminSchema = new Schema({
 		required: true,
 		unique: true
 	},
-	// Dont store password as plain text!
 	password: {
 		type: String,
 		required: true

@@ -4,7 +4,7 @@ const keygen = require('random-key');
 
 
 /*
-  REST User controller
+  User controller
   - Controls creation/access to user db
 
 ----------------------------- */
@@ -44,15 +44,14 @@ exports.post = function(req, res, next) {
 
   newUser.save((err, user) => {
     if(err) {
-      //return next(err);
-      console.log('ERROR! Saving User (User Controller): ' + err);
       res.status(500).send('Error saving user: ' + err);
     } else {
 
       let userObj = {
-        name: `${user.fname} ${user.lname}`,
+        fname: user.fname,
+        lname: user.lname,
         id: user._id,
-        pid: user.purchase_id,
+        purchase_id: user.purchase_id,
         email: user.email,
         plainkey: siteKey,
         hashkey: user.sitekey

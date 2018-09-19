@@ -27,7 +27,7 @@ require('./middleware/appMiddleware')(app);
 
 // API and Auth routes
 app.use('/api', api);
-app.use('./auth', auth);
+app.use('/auth', auth);
 
 
 // Final error handling function

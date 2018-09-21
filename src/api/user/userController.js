@@ -1,6 +1,7 @@
 const User = require('./userModel');
 const signToken = require('../../auth/auth').signToken;
 const keygen = require('random-key');
+const _ = require('lodash');
 
 
 /*

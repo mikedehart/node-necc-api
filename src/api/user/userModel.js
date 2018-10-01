@@ -24,7 +24,7 @@ let UserSchema = new Schema({
 	},
 	signdate: {
 		type: Date,
-		default: new Date()
+		default: () => { return new Date(); }
 	},
 	sitekey: {
 		type: String,

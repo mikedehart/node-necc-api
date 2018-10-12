@@ -28,7 +28,6 @@ let UserSchema = new Schema({
 	},
 	sitekey: {
 		type: String,
-		unique: true,
 		required: true
 	}
 });

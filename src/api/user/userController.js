@@ -63,6 +63,7 @@ exports.post = function(req, res, next) {
 
 };
 
+
 /*
   Used to log user into members-only section.
   Since user can re-use email, need to grab
@@ -106,6 +107,31 @@ exports.put = function(req, res, next) {
       res.status(500).send(err);
     } else {
       res.json(saved);
+    }
+  })
+};
+
+exports.genkey = function(req, res, next) {
+  let user = req.user; // Obtained from ID in params function
+  let newKey = keygen.generate(10); // Generate new key
+
+  // Assign new key to sitekey property before updating in DB
+  user.sitekey = newKey;
+
+  user.save(function(err, saved) {
+    if(err) {
+      res.status(500).send(err);
+    } else {
+      let userObj = {
+        fname: saved.fname,
+        lname: saved.lname,
+        id: saved._id,
+        purchase_id: saved.purchase_id,
+        email: saved.email,
+        plainkey: newKey,
+        hashkey: saved.sitekey
+      };
+      res.json(userObj);
     }
   })
 };

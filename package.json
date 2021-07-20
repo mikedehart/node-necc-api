@@ -35,7 +35,7 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
     "method-override": "^3.0.0",
-    "mongoose": "^5.2.15",
+    "mongoose": "^5.7.5",
     "random-key": "^0.3.2"
   },
   "devDependencies": {

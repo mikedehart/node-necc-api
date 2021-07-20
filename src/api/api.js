@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const adminRoutes = require('./admin/adminRoutes');
+//const adminRoutes = require('./admin/adminRoutes');
 
 /*
 	API router for database endpoints.
